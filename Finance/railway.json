@@ -1,7 +1,12 @@
 {
-  "build": {
-    "builder": "nixpacks",
-    "language": "php"
-  },
-  "start": "php -S 0.0.0.0:$PORT -t public"
+    "$schema": "https://railway.app/railway.schema.json",
+    "build": {
+        "builder": "NIXPACKS",
+        "buildCommand": "composer install --optimize-autoloader --no-scripts --no-interaction --ignore-platform-req=ext-gd"
+    },
+    "deploy": {
+        "startCommand": "php -S 0.0.0.0:$PORT -t public",
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+    }
 }
